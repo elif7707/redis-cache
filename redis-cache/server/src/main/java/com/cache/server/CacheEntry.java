@@ -1,12 +1,5 @@
+package com.cache.server;
+import java.time.Instant;
 
 
-public class Now{
-    public static void main(String[] args){
-
-        private String cachedValue;
-        Instant now = Instant.now();
-        Instant start = Instant.now();
-        Instant end = Instant.now();
-        long elapsedTime = Duration.between(baslangic, bitis).toSeconds();
-    }
-}
+public record CacheEntry(String value, Instant lastAccessedAt) {}
