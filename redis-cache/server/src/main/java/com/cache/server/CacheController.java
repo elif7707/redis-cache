@@ -13,9 +13,9 @@ import java.util.concurrent.ConcurrentMap;
 @RestController
 public class CacheController {
 
-    private static final Duration EXPIRATION_DURATION = Duration.ofDays(3);
+    private static final Duration EXPIRATION_DURATION = Duration.ofHours(3);
 
-    @Scheduled(fixedRate = 3600000)
+    @Scheduled(fixedRate = 1800000)
     public void cleanupExpiredEntries() {
         Instant now = Instant.now();
         cache.entrySet().removeIf(entry ->
