@@ -1,9 +1,7 @@
 package com.cache.server;
 
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -25,7 +23,7 @@ public class CacheController {
 
     private final ConcurrentMap<String, CacheEntry> cache = new ConcurrentHashMap<>();
 
-    @GetMapping("/setcache")
+    @PostMapping("/setcache")
     public String setCache(@RequestParam String key, @RequestParam String value) {
         cache.put(key, new CacheEntry(value, Instant.now()));
         return "Başarılı! '" + key + "' anahtarına '" + value + "' değeri hafızaya kaydedildi.";
@@ -48,7 +46,7 @@ public class CacheController {
         return "Sonuç: " + key + " = " + entry.value();
     }
 
-    @GetMapping("/deletecache")
+    @DeleteMapping("/deletecache")
     public String deleteCache(@RequestParam String key) {
         if (!cache.containsKey(key)) {
             return "Hata: Silinmek istenen '" + key + "' adında bir kayıt zaten yok!";
